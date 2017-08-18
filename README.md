@@ -1,5 +1,6 @@
 # fanfou-telegram-bot
 
+[![Build Status](https://travis-ci.org/junbaor/fanfou-telegram-bot.svg?branch=master)](https://travis-ci.org/junbaor/fanfou-telegram-bot)
 [![telegram](https://img.shields.io/badge/telegram-junbaor-blue.svg?style=flat-square)](https://t.me/junbaor)
 [![wechat](https://img.shields.io/badge/wechat-junbaor-green.svg?style=flat-square)]()
 
