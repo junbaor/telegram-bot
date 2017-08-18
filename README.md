@@ -22,6 +22,6 @@
 使用 `java -jar target/fanfou-0.1-jar-with-dependencies.jar` 命令启动 
 
 ## 截图
-![](https://ws1.sinaimg.cn/large/d6246196ly1finyro7vdgj20ku112qes.jpg)
-![](https://ws1.sinaimg.cn/large/d6246196ly1finyro908nj20ku112qh4.jpg)
-![](https://ws1.sinaimg.cn/large/d6246196ly1finyroavtxj20ku11218v.jpg)
+![](https://raw.githubusercontent.com/junbaor/fanfou-telegram-bot/master/screenshot/1.png)
+![](https://raw.githubusercontent.com/junbaor/fanfou-telegram-bot/master/screenshot/2.png)
+![](https://raw.githubusercontent.com/junbaor/fanfou-telegram-bot/master/screenshot/3.png)
