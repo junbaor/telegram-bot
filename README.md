@@ -25,3 +25,21 @@
 ![](https://raw.githubusercontent.com/junbaor/fanfou-telegram-bot/master/screenshot/1.png)
 ![](https://raw.githubusercontent.com/junbaor/fanfou-telegram-bot/master/screenshot/2.png)
 ![](https://raw.githubusercontent.com/junbaor/fanfou-telegram-bot/master/screenshot/3.png)
+
+## license
+[![license](https://img.shields.io/github/license/junbaor/fanfou-telegram-bot.svg?style=flat-square)](https://github.com/junbaor/fanfou-telegram-bot/blob/master/LICENSE)
+```
+           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                   Version 2, December 2004
+
+Copyright (C) 2017 Sam Hocevar <junbaor@gmail.com>
+
+Everyone is permitted to copy and distribute verbatim or modified
+copies of this license document, and changing it is allowed as long
+as the name is changed.
+
+           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+ 0. You just DO WHAT THE FUCK YOU WANT TO.
+```
