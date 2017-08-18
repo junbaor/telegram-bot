@@ -5,7 +5,7 @@
 
 ## telegram channel
 
-每日精选: https://t.me/fanfou_daily (每天 8点5分 推送)
+每日精选: https://t.me/fanfou_daily (每天 8点5分 推送)  
 每周精选: https://t.me/fanfou_weekly (每周一 8点5分 推送)
 
 ## 配置说明
