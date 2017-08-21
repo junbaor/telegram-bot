@@ -12,7 +12,9 @@
 ## 配置说明
 
 - bot.token : 机器人token
-- bot.name : 机器人名称
+- bot.name : 机器人用户名
+- getid.bot.token : getId 机器人 token
+- getid.bot.name : getId 机器人用户名
 - daily.chatId : 机器人与每日频道的回话 ID
 - weekly.chatId : 机器人与每周频道的回话 ID
 - serverchan.sckey : server酱 sckey
