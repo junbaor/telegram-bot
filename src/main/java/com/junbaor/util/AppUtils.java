@@ -2,36 +2,28 @@ package com.junbaor.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.junbaor.App;
 import com.junbaor.model.ResponsePo;
 import net.dongliu.requests.Requests;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
+@Component
 public class AppUtils {
 
     private static final Logger log = LoggerFactory.getLogger(AppUtils.class);
-    private static Properties properties = new Properties();
+
+    @Value("${serverchan.sckey}")
+    public String serverChanSckey;
+
+    public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     public static void main(String[] args) {
-        Calendar cal = Calendar.getInstance();
-        System.out.println(cal.get(Calendar.DAY_OF_WEEK));
-
-        LocalDateTime now = LocalDateTime.now();
-        DayOfWeek dayOfWeek = now.plusDays(1).getDayOfWeek();
-        System.out.println(dayOfWeek.getValue());
-
         System.out.println(convert("http://photo1.fanfou.com/v1/mss_3d027b52ec5a4d589e68050845611e68/ff/n0/0e/dp/rx_515248.jpg@596w_1l.jpg"));
 
         String str = "你的学问大别人未必知道，但你胸一大别人就看出来了。" +
@@ -46,64 +38,25 @@ public class AppUtils {
         System.out.println(str);
     }
 
-    public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     /**
-     * 判断今天星期几
-     * 1 星期日 2星期一
+     * 按照 yyyy-MM-dd 日期获取每日饭否精选
      *
+     * @param nowDate
      * @return
      */
-    public static int getDayOnWeek() {
-        Calendar cal = Calendar.getInstance();
-        return cal.get(Calendar.DAY_OF_WEEK);
-    }
-
-    /**
-     * 获取下一次启动时间距当前毫秒数
-     *
-     * @return
-     */
-    public static Long getNextTime() {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime target = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 8, 5);
-
-        if (now.isAfter(target)) {
-            now = now.plusDays(1);
-        }
-
-        String nextDate = dateTimeFormatter.format(now);
-        String nextDateTime = nextDate + " 08:05:00";
-        Date result = null;
-        try {
-            result = simpleDateFormat.parse(nextDateTime);
-        } catch (ParseException e) {
-            log.error(e.getMessage(), e);
-        }
-
-        return result.getTime() - new Date().getTime();
-    }
-
-    /**
-     * 获取饭否当天精选
-     *
-     * @return
-     */
-    public static ResponsePo getFanFouDaily() {
-        String nowDate = dateTimeFormatter.format(LocalDateTime.now());
+    public static ResponsePo getFanFouDailyByDate(String nowDate) {
         String json = Requests.get("http://blog.fanfou.com/digest/json/" + nowDate + ".daily.json").send().readToText();
         return AppUtils.gson.fromJson(json, ResponsePo.class);
     }
 
     /**
-     * 获取饭否当周精选 只允许周一调用
+     * 按照 yyyy-MM-dd 日期获取每周饭否精选
      *
+     * @param nowDate
      * @return
      */
-    public static ResponsePo getFanFouWeekly() {
-        String nowDate = dateTimeFormatter.format(LocalDateTime.now());
+    public static ResponsePo getFanFouWeeklyByDate(String nowDate) {
         String json = Requests.get("http://blog.fanfou.com/digest/json/" + nowDate + ".weekly.json").send().readToText();
         return AppUtils.gson.fromJson(json, ResponsePo.class);
     }
@@ -122,7 +75,8 @@ public class AppUtils {
     public static String filter(String msg) {
         return msg.replaceAll("转@<a.*?</a> ", "")
                 .replaceAll("<a href.*?>", "")
-                .replaceAll("</a>", "");
+                .replaceAll("</a>", "")
+                .replaceAll("&quot;", "\"");
     }
 
     /**
@@ -181,23 +135,19 @@ public class AppUtils {
     }
 
     /**
-     * 加载配置文件
+     * 使用 server酱 发送消息
+     * http://sc.ftqq.com
+     *
+     * @param title 标题
+     * @param body  正文
      */
-    public static void initConfig() {
-        try {
-            properties.load(App.class.getClassLoader().getResourceAsStream("config.properties"));
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
+    public void sendServerChan(String title, String body) {
+        Map<String, String> params = new HashMap<>();
+        params.put("text", title);
+        params.put("desp", body);
+
+        String response = Requests.get("https://sc.ftqq.com/" + serverChanSckey + ".send").params(params).send().readToText();
+        log.info("server酱响应：{}", response);
     }
 
-    /**
-     * 获取配置
-     *
-     * @param name
-     * @return
-     */
-    public static String getConfig(String name) {
-        return properties.getProperty(name);
-    }
 }

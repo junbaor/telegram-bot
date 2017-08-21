@@ -15,6 +15,9 @@
 - bot.name : 机器人名称
 - daily.chatId : 机器人与每日频道的回话 ID
 - weekly.chatId : 机器人与每周频道的回话 ID
+- serverchan.sckey : server酱 sckey
+
+> server酱 用来推送错误信息,详情可以查看 http://sc.ftqq.com
 
 ## 使用说明 
 > 注意: 本地开发需要挂墙外代理, http 协议 1080 端口  
