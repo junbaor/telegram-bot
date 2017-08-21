@@ -22,7 +22,7 @@ public class WeeklyTask implements Runnable {
     public void run() {
         log.info("每周任务启动...");
         try {
-            if (AppUtils.getDayOnWeek() == 1) {
+            if (AppUtils.getDayOnWeek() == 2) {
                 ResponsePo fanFouWeekly = AppUtils.getFanFouWeekly();
                 fanfouHandler.sendContent(charId, fanFouWeekly);
             }
