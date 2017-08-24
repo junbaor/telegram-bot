@@ -74,7 +74,7 @@ public class FanfouHandler extends TelegramLongPollingBot {
                         photo.setChatId(chatId);
                         photo.setNewPhoto(file);
                         sendPhoto(photo);
-                    } catch (TelegramApiException e) {
+                    } catch (Exception e) {
                         log.info("图片发送失败,转用文件方式发送");
                         SendDocument document = new SendDocument();
                         document.setChatId(chatId);
@@ -84,7 +84,7 @@ public class FanfouHandler extends TelegramLongPollingBot {
                         appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
                     }
                 }
-            } catch (TelegramApiException e) {
+            } catch (Exception e) {
                 log.error(e.getMessage(), e);
                 appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
             }
