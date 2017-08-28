@@ -48,6 +48,8 @@ public class FanfouHandler extends TelegramLongPollingBot {
         List<ResponsePo.MsgsBean> msgs = fromJson.getMsgs();
         for (ResponsePo.MsgsBean msg : msgs) {
             try {
+                log.info("正在发送：{}", AppUtils.gson.toJson(msg));
+
                 message.setText(AppUtils.filter(msg.getMsg()));
 
                 InlineKeyboardButton buttonOne = new InlineKeyboardButton();

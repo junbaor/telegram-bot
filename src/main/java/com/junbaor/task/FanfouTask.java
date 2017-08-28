@@ -39,7 +39,7 @@ public class FanfouTask {
         try {
             String date = DateFormatUtils.format(new Date(), pattern);
             fanfouHandler.sendContent(dailyChatId, AppUtils.getFanFouDailyByDate(date));
-        } catch (TelegramApiException e) {
+        } catch (Exception e) {
             log.info(e.getMessage());
             appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
         }
@@ -55,7 +55,7 @@ public class FanfouTask {
         try {
             String date = DateFormatUtils.format(new Date(), pattern);
             fanfouHandler.sendContent(weeklyChatId, AppUtils.getFanFouWeeklyByDate(date));
-        } catch (TelegramApiException e) {
+        } catch (Exception e) {
             log.info(e.getMessage());
             appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
         }
