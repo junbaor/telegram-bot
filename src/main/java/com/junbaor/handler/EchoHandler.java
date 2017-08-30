@@ -53,6 +53,8 @@ public class EchoHandler extends TelegramLongPollingBot {
         @Override
         public void run() {
             try {
+                log.info("解析地址:{}", update.getMessage().getText());
+
                 Long chatId = update.getMessage().getChatId();
                 Integer messageId = update.getMessage().getMessageId();
                 String text = update.getMessage().getText();
@@ -83,6 +85,8 @@ public class EchoHandler extends TelegramLongPollingBot {
                 document.setPerformer(responsePo.getInfo().getSong_info().getAuthor().getName());
                 document.setNewAudio(file);
                 sendAudio(document);
+
+                log.info("解析成功,echoId:{} echoName:{}", musicId, fileName);
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
