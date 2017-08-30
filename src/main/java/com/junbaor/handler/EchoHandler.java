@@ -59,7 +59,7 @@ public class EchoHandler extends TelegramLongPollingBot {
                 Integer messageId = update.getMessage().getMessageId();
                 String text = update.getMessage().getText();
 
-                if (text.indexOf("app-echo.com") < 0) {
+                if (text != null && text.indexOf("app-echo.com") < 0) {
                     return;
                 }
 
