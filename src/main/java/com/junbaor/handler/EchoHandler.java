@@ -63,7 +63,7 @@ public class EchoHandler extends TelegramLongPollingBot {
                     return;
                 }
 
-                String musicId = text.replaceAll("http.?://www.app-echo.com/#/sound/", "").replace("http.?://www.app-echo.com/sound/info\\?sound_id=", "");
+                String musicId = text.replaceAll("http.?://www.app-echo.com/#/sound/", "").replaceAll("http.?://www.app-echo.com/sound/info\\?sound_id=", "");
 
                 String jsonString = Requests.get("http://www.app-echo.com/api/sound/info?id=" + musicId).send().readToText();
                 EchoResponsePo responsePo = AppUtils.gson.fromJson(jsonString, EchoResponsePo.class);
