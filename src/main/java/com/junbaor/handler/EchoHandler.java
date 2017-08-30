@@ -82,7 +82,12 @@ public class EchoHandler extends TelegramLongPollingBot {
                 document.setChatId(chatId);
                 document.setReplyToMessageId(messageId);
                 document.setTitle(fileName);
-                document.setPerformer(responsePo.getInfo().getSong_info().getAuthor().getName());
+
+                EchoResponsePo.InfoBean.SongInfoBean songInfo = responsePo.getInfo().getSong_info();
+                if (songInfo != null && songInfo.getAuthor() != null) {
+                    document.setPerformer(songInfo.getAuthor().getName());
+                }
+
                 document.setNewAudio(file);
                 sendAudio(document);
 
