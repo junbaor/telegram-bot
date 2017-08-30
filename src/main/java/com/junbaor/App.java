@@ -1,5 +1,6 @@
 package com.junbaor;
 
+import com.junbaor.handler.EchoHandler;
 import com.junbaor.handler.FanfouHandler;
 import com.junbaor.handler.GetIdHandler;
 import com.junbaor.util.AppUtils;
@@ -27,6 +28,9 @@ public class App {
     @Autowired
     private GetIdHandler getIdHandler;
     @Autowired
+    private EchoHandler echoHandler;
+
+    @Autowired
     private AppUtils appUtils;
 
     public static void main(String[] args) {
@@ -41,6 +45,7 @@ public class App {
         try {
             telegramBotsApi.registerBot(fanfouHandler);
             telegramBotsApi.registerBot(getIdHandler);
+            telegramBotsApi.registerBot(echoHandler);
         } catch (TelegramApiException e) {
             log.error(e.getMessage(), e);
             appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
