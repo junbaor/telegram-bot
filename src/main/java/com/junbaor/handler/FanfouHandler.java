@@ -68,7 +68,7 @@ public class FanfouHandler extends TelegramLongPollingBot {
                 ResponsePo.MsgsBean.ImgBean imgs = msg.getImg();
                 if (!imgs.getPreview().equals("")) {
                     String fileRoot = AppUtils.getFilePath();
-                    File file = new File(fileRoot + msg.getId() + ".jpg");
+                    File file = new File(fileRoot + msg.getId() + ".gif");
                     Requests.get(AppUtils.convert(imgs.getPreview())).send().writeToFile(file);
 
                     try {
