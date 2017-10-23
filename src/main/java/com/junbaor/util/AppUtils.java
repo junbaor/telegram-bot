@@ -76,7 +76,12 @@ public class AppUtils {
         return msg.replaceAll("转@<a.*?</a> ", "")
                 .replaceAll("<a href.*?>", "")
                 .replaceAll("</a>", "")
-                .replaceAll("&quot;", "\"");
+                .replaceAll("&quot;", "\"")
+                .replaceAll("&lt;", "<")
+                .replaceAll("&gt;", ">")
+                .replaceAll("&quot;", "\"")
+                .replaceAll("&amp;", "&")
+                .replaceAll("&nbsp;", " ");
     }
 
     /**
