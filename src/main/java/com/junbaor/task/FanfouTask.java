@@ -47,7 +47,7 @@ public class FanfouTask {
         log.info("每日精选完成,耗时:{} ms", System.currentTimeMillis() - start);
     }
 
-    @Scheduled(cron = "0 0 9 * * mon")
+    @Scheduled(cron = "0 0 12 * * mon")
     public void weekly() {
         long start = System.currentTimeMillis();
         log.info("每周精选启动...");
