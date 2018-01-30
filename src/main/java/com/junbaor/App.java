@@ -2,6 +2,7 @@ package com.junbaor;
 
 import com.junbaor.handler.FanfouHandler;
 import com.junbaor.handler.GetIdHandler;
+import com.junbaor.handler.YiYanHandler;
 import com.junbaor.util.AppUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -27,6 +28,8 @@ public class App {
     @Autowired
     private GetIdHandler getIdHandler;
     @Autowired
+    private YiYanHandler yiYanHandler;
+    @Autowired
     private AppUtils appUtils;
 
     public static void main(String[] args) {
@@ -41,6 +44,7 @@ public class App {
         try {
             telegramBotsApi.registerBot(fanfouHandler);
             telegramBotsApi.registerBot(getIdHandler);
+            telegramBotsApi.registerBot(yiYanHandler);
         } catch (TelegramApiException e) {
             log.error(e.getMessage(), e);
             appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
