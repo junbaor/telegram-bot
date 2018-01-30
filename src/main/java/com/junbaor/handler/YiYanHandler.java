@@ -1,6 +1,8 @@
 package com.junbaor.handler;
 
+import com.junbaor.util.AppUtils;
 import net.dongliu.requests.Requests;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class YiYanHandler extends TelegramLongPollingBot {
 
     @Value("${yiyan.bot.token}")
     private String botName;
+
+    @Autowired
+    private AppUtils appUtils;
 
     private static Map<String, String> type = new HashMap<>();
 
@@ -61,7 +66,8 @@ public class YiYanHandler extends TelegramLongPollingBot {
                 sendMessage(sendMessage);
             }
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
+            appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
         }
     }
 
@@ -87,6 +93,7 @@ public class YiYanHandler extends TelegramLongPollingBot {
             String yiyan = Requests.get("https://sslapi.hitokoto.cn/?encode=text&c=" + typeParams).send().readToText();
             return yiyan;
         } catch (Exception e) {
+            appUtils.sendServerChan(e.getMessage(), ExceptionUtils.getStackTrace(e));
             return "嗯? 有点不对劲哎~~~";
         }
 
