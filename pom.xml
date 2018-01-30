@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.junbaor</groupId>
-    <artifactId>fanfou</artifactId>
+    <artifactId>telegram-bot</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
 
-    <name>fanfou</name>
+    <name>telegram-bot</name>
     <url>http://maven.apache.org</url>
 
     <parent>
@@ -71,7 +71,7 @@
     </dependencies>
 
     <build>
-        <finalName>fanfou</finalName>
+        <finalName>telegram-bot</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
